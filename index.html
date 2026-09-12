@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghostface Soundboard</title>
+    <style>
+        body {
+            background-color: #0b0b0b;
+            color: #e50914;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+            text-align: center;
+        }
+        p.subtitle {
+            color: #888;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+        .soundboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 800px;
+        }
+        .sound-btn {
+            background-color: #141414;
+            color: #ffffff;
+            border: 2px solid #333;
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .sound-btn:hover {
+            background-color: #e50914;
+            color: #000000;
+            border-color: #e50914;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(229, 9, 20, 0.4);
+        }
+        .sound-btn:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ghostface</h1>
+    <p class="subtitle">"What's your favorite scary movie?"</p>
+
+    <div class="soundboard-grid">
+        <button class="sound-btn" onclick="playSound('hello.mp3')">"Hello?"</button>
+        <button class="sound-btn" onclick="playSound('scary_movie.mp3')">"What's your favorite scary movie?"</button>
+        <button class="sound-btn" onclick="playSound('hang_up.mp3')">"Hang up on me again..."</button>
+        <button class="sound-btn" onclick="playSound('gut_you.mp3')">"I'll gut you like a fish!"</button>
+        <button class="sound-btn" onclick="playSound('in_the_house.mp3')">"I'm in the house."</button>
+        <button class="sound-btn" onclick="playSound('show_me.mp3')">"You want to die tonight?"</button>
+    </div>
+
+    <script>
+        let currentAudio = null;
+
+        function playSound(audioFile) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            currentAudio = new Audio('audio/' + audioFile);
+            currentAudio.play().catch(error => {
+                console.error("Audio block:", error);
+                alert("Audio file not found. Ensure it is inside your 'audio' folder as: " + audioFile);
+            });
+        }
+    </script>
+
+</body>
+</html>
