@@ -87,7 +87,7 @@
                 currentAudio.pause();
                 currentAudio.currentTime = 0;
             }
-            currentAudio = new Audio('audio/' + audioFile);
+           currentAudio = new Audio(audioFile);
             currentAudio.play().catch(error => {
                 console.error("Audio block:", error);
                 alert("Audio file not found. Ensure it is inside your 'audio' folder as: " + audioFile);
